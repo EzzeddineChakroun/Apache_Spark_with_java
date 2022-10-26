@@ -1,0 +1,2 @@
+# Apache_Spark_with_java
+This exercices are made in order to practise Apache Spark with java
