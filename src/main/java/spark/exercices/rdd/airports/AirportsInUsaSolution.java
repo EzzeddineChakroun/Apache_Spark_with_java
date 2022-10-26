@@ -12,7 +12,7 @@ public class AirportsInUsaSolution {
 
     public static void main(String[] args) throws Exception {
         Logger.getLogger("org").setLevel(Level.ERROR);
-        SparkConf sparkConf = new SparkConf().setAppName("AirportsInUsa").setMaster("local[1]");
+        SparkConf sparkConf = new SparkConf().setAppName("AirportsInUsa").setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(sparkConf);
         JavaRDD<String> airports = sc.textFile("in/airports.text");
         JavaRDD<String> airports_USA = airports.filter(line -> line.split(Utils.COMMA_DELIMITER)[3].equals("\"United States\""));
