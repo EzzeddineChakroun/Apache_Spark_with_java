@@ -6,21 +6,22 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
-public class UnionLogsSolution {
+public class SameHostsSolution {
 
     public static void main(String[] args) throws Exception {
         Logger.getLogger("org").setLevel(Level.ERROR);
-        SparkConf conf = new SparkConf().setAppName("NasaLogsUnion").setMaster("local");
+        SparkConf conf = new SparkConf().setAppName("SameHost").setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> nasaJulyLogs = sc.textFile("in/nasa_19950701.tsv");
         JavaRDD<String> nasaAugustLogs = sc.textFile("in/nasa_19950801.tsv");
-        JavaRDD<String> nasalogs=nasaJulyLogs.union(nasaAugustLogs);
-        JavaRDD<String> nasalogs_without_headers =nasalogs.filter(line->isnotheader(line));
-        JavaRDD<String> nasalogs_sample=nasalogs_without_headers.sample(true, 0.1);
-        nasalogs_sample.saveAsTextFile("out/sample_nasa_logs.tsv");
+        JavaRDD<String> nasaJulyHosts = nasaJulyLogs.map(line->line.split("\t")[0]);
+        JavaRDD<String> nasaAugustHosts = nasaAugustLogs.map(line->line.split("\t")[0]);
+        JavaRDD<String> nasaBothMonthsHosts= nasaJulyHosts.intersection(nasaAugustHosts);
+        JavaRDD<String> nasaHostsWithoutHeaders= nasaBothMonthsHosts.filter(line->isnotheader(line));
+        nasaHostsWithoutHeaders.saveAsTextFile("out/nasa_logs_same_hosts.csv");
     }
 
     private static Boolean isnotheader(String line) {
-        return !line.startsWith("host	logname	time	method	url	response	bytes");
+        return !line.startsWith("host");
     }
 }
