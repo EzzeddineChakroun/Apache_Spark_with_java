@@ -1,4 +1,4 @@
-package com.sparkTutorial.rdd.commons;
+package spark.exercices.rdd.commons;
 
 public class Utils {
 

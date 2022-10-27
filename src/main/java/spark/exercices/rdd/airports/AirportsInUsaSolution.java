@@ -1,6 +1,6 @@
 package spark.exercices.rdd.airports;
 
-import com.sparkTutorial.rdd.commons.Utils;
+import spark.exercices.rdd.commons.Utils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
