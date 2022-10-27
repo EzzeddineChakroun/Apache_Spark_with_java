@@ -13,7 +13,10 @@ import java.util.Map;
 public class WordCount {
     public static void main(String[] args) throws Exception
     {
+        //Problem:
         // Count Words in the file in/word_count.text and show them in stdout
+
+        //Solution:
         Logger.getLogger("org").setLevel(Level.ERROR);
         SparkConf conf = new SparkConf().setAppName("number_word_Airports").setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
