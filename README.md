@@ -1,3 +1,6 @@
 # Apache_Spark_with_java
-This exercices are made in order to practise Apache Spark with java<br>
-Tutorial : https://learning.oreilly.com/videos/apache-spark-with/ 
+The repository contains my proposed solution for the exercices proposed by the following course:<br>
+https://learning.oreilly.com/videos/apache-spark-with/<br>
+Java version : 1.8 <br>
+Check pom.xml for maven dependency
+
